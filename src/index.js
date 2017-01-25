@@ -1,9 +1,9 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
+import { render } from 'react-dom';
 import Counter from './components/Counter';
+require("./sass/main.scss");
 
-
-ReactDOM.render(
+render(
   <Counter/>,
   document.getElementById('mount')
 );

@@ -4,8 +4,11 @@
   "description": "My Project ---",
   "main": "index.js",
   "scripts": {
+    "compile:server": "babel server --out-file server/server-compiled.js",
     "compile": "webpack",
-    "start": "node server.js",
+    "lint:javascript": "./node_modules/.bin/eslint ./src ./server/server.js",
+    "start": "node ./server/server.js",
+    "start:dev": "babel-node ./server/server.js --presets es2015,stage-2",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
@@ -16,10 +19,26 @@
     "babel-loader": "^6.2.10",
     "babel-preset-es2015": "^6.22.0",
     "babel-preset-react": "^6.22.0",
+    "compression": "^1.6.2",
+    "css-loader": "^0.26.1",
     "express": "^4.14.0",
+    "extract-text-webpack-plugin": "^1.0.1",
+    "html-webpack-plugin": "^2.26.0",
+    "node-sass": "^4.3.0",
     "react": "^15.4.2",
     "react-dom": "^15.4.2",
+    "sass-loader": "^4.1.1",
+    "style-loader": "^0.13.1",
     "webpack": "^1.14.0",
     "webpack-dev-middleware": "^1.9.0"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.22.2",
+    "babel-eslint": "^7.1.1",
+    "babel-preset-stage-2": "^6.22.0",
+    "eslint": "^3.14.0",
+    "eslint-loader": "^1.6.1",
+    "eslint-plugin-babel": "^4.0.1",
+    "eslint-plugin-react": "^6.9.0"
   }
 }
