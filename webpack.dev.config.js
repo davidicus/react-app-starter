@@ -1,4 +1,3 @@
-
 //provides utilities for working with file and directory paths.
 var path = require('path');
 // plugin for moving index.html and adding our bundled js
@@ -13,6 +12,7 @@ var htmlWebpackPluginConfig = new htmlWebpackPlugin({
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 var ExtractCSS =  new ExtractTextPlugin('main.css');
+var autoprefixer = require('autoprefixer');
 
 
 //config for webpack development
@@ -46,7 +46,7 @@ var config = {
         test: /\.scss$/,
         loader: ExtractTextPlugin.extract(
           'style', // The backup style loader
-          'css?sourceMap!sass?sourceMap'
+          ['css?sourceMap', 'postcss?sourceMap', 'sass?sourceMap']
         )
       },
       {
@@ -66,8 +66,14 @@ var config = {
     ],
   },
   //tell webpack where eslint config file is
-    eslint: {
+  eslint: {
     configFile: './.eslintrc'
+  },
+  postcss: function () {
+    return {
+      defaults: [autoprefixer],
+      cleaner:  [autoprefixer({ browsers: [] })]
+    };
   },
   //load the HTMLwebpackplugin into webpack
   plugins: [
