@@ -4,11 +4,12 @@
   "description": "My Project ---",
   "main": "index.js",
   "scripts": {
-    "compile:server": "babel server --out-file server/server-compiled.js",
-    "compile": "webpack",
+    "compile:server": "babel server -d dist",
+    "compile:webpack": "webpack -p",
+    "compile": "npm run compile:server && npm run compile:webpack",
     "lint:javascript": "./node_modules/.bin/eslint ./src ./server/server.js",
-    "start": "node ./server/server.js",
-    "start:dev": "babel-node ./server/server.js --presets es2015,stage-2",
+    "start": "NODE_ENV=development nodemon ./server/server.js --exec babel-node --inspect",
+    "start:prod": "NODE_ENV=production node ./dist/server.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
@@ -39,6 +40,7 @@
     "eslint": "^3.14.0",
     "eslint-loader": "^1.6.1",
     "eslint-plugin-babel": "^4.0.1",
-    "eslint-plugin-react": "^6.9.0"
+    "eslint-plugin-react": "^6.9.0",
+    "morgan": "^1.7.0"
   }
 }

@@ -1,35 +1,62 @@
 import express from 'express';
+import morgan from 'morgan';
 import compression from 'compression';
 import webpackDevMiddleware from 'webpack-dev-middleware';
 import webpack from 'webpack';
 import webpackConfig from '../webpack.config.js';
 import path from 'path';
 
-
+//set up express instance
 const app = express();
+//set up webpack with config for middleware to use
 const compiler = webpack(webpackConfig);
+//change directory context when in dev
 const ROOT_DIR = __dirname.replace('/server', '');
+//find out node environment
+const NODE_ENV = process.env.NODE_ENV || 'development';
 
+// ---------------------
+// -- some middleware --
+// ---------------------
+//console logger
+app.use(morgan('dev'));
+//compress all responses
 app.use(compression());
 
-//for serving static assets
-app.get('/', function(req, res) {
-  res.sendFile(path.join(ROOT_DIR, 'src/index.html'));
-})
-app.use(express.static(ROOT_DIR + '/dist'));
 
-app.use(webpackDevMiddleware(compiler, {
-  hot: true,
-  filename: 'index_bundled.js',
-  publicPath: '/',
-  stats: {
-    colors: true,
-  },
-  historyApiFallback: true,
-}));
+// -------------------
+// -- Server Listen --
+// -------------------
+//check if we are in dev or prod
+if (NODE_ENV === 'production') {
+  //for serving static assets
+  app.use(express.static(__dirname + '/'));
+  // send index when root is hit
+  app.get('/', (req, res) => {
+    res.sendFile(path.join(__dirname, 'index.html'));
+  });
+} else {
+  //hot reloading in dev mode
+  app.use(webpackDevMiddleware(compiler, {
+    hot: true,
+    filename: 'index_bundled.js',
+    publicPath: '/',
+    stats: {
+      colors: true,
+    },
+    historyApiFallback: true,
+  }));
+  //change context for dev locations
+  app.use(express.static(ROOT_DIR + './src'));
+  app.get('/', (req, res) => {
+    res.sendFile(path.join(ROOT_DIR, 'src/index.html'));
+  });
+}
 
-const server = app.listen(3000, function() {
+
+//have express listen for request
+const server = app.listen(3000, () => {
   const host = server.address().address || localhost;
   const port = server.address().port;
-  console.log('Example app listening at http://%s:%s', host, port);
+  console.log('Your awesome app listening at http://%s:%s', host, port);
 });
