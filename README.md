@@ -28,7 +28,8 @@ Compile
 npm run compile
 ```
 
-
+sass linter :
+https://github.com/AtomLinter/linter-stylelint
 
 # Breakdown of Node modules
 
