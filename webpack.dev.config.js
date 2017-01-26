@@ -9,8 +9,16 @@ var htmlWebpackPluginConfig = new htmlWebpackPlugin({
     inject: 'body'
 });
 
-var ExtractTextPlugin = require('extract-text-webpack-plugin');
+var styleLintPlugin = require('stylelint-webpack-plugin');
+var stylelint = new styleLintPlugin({
+  configFile: '.stylelintrc.yml',
+  context: 'src/sass',
+  files: '**/*.scss',
+  failOnError: false,
+  syntax: 'scss'
+});
 
+var ExtractTextPlugin = require('extract-text-webpack-plugin');
 var ExtractCSS =  new ExtractTextPlugin('main.css');
 var autoprefixer = require('autoprefixer');
 
@@ -78,7 +86,8 @@ var config = {
   //load the HTMLwebpackplugin into webpack
   plugins: [
     htmlWebpackPluginConfig,
-    ExtractCSS
+    ExtractCSS,
+    stylelint
   ],
 };
 

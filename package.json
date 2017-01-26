@@ -8,6 +8,8 @@
     "compile:webpack": "webpack -p",
     "compile": "npm run compile:server && npm run compile:webpack",
     "lint:javascript": "./node_modules/.bin/eslint ./src ./server/server.js",
+    "lint:stylelint": "./node_modules/.bin/stylelint './src/**/*.scss' --syntax scss",
+    "lint": "npm run lint:javascript && npm run lint:stylelint",
     "start": "NODE_ENV=development nodemon ./server/server.js --exec babel-node --inspect",
     "start:prod": "NODE_ENV=production node ./dist/server.js",
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -32,6 +34,7 @@
     "react-dom": "^15.4.2",
     "sass-loader": "^4.1.1",
     "style-loader": "^0.13.1",
+    "stylelint": "^7.7.1",
     "webpack": "^1.14.0",
     "webpack-dev-middleware": "^1.9.0"
   },
@@ -43,6 +46,7 @@
     "eslint-loader": "^1.6.1",
     "eslint-plugin-babel": "^4.0.1",
     "eslint-plugin-react": "^6.9.0",
-    "morgan": "^1.7.0"
+    "morgan": "^1.7.0",
+    "stylelint-webpack-plugin": "^0.5.1"
   }
 }
