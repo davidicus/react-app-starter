@@ -18,11 +18,9 @@ const NODE_ENV = process.env.NODE_ENV || 'development';
 // ---------------------
 // -- some middleware --
 // ---------------------
-//console logger
-app.use(morgan('dev'));
+
 //compress all responses
 app.use(compression());
-
 
 // -------------------
 // -- Server Listen --
@@ -36,6 +34,8 @@ if (NODE_ENV === 'production') {
     res.sendFile(path.join(__dirname, 'index.html'));
   });
 } else {
+  //console logger
+  app.use(morgan('dev'));
   //hot reloading in dev mode
   app.use(webpackDevMiddleware(compiler, {
     hot: true,
@@ -56,7 +56,7 @@ if (NODE_ENV === 'production') {
 
 //have express listen for request
 const server = app.listen(3000, () => {
-  const host = server.address().address || localhost;
+  const host = server.address().address || 'localhost';
   const port = server.address().port;
   console.log('Your awesome app listening at http://%s:%s', host, port);
 });
