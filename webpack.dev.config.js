@@ -1,30 +1,38 @@
 //provides utilities for working with file and directory paths.
-var path = require('path');
-// plugin for moving index.html and adding our bundled js
-var htmlWebpackPlugin = require('html-webpack-plugin');
-//configuration for htmlwebpackplugin: tells the template, what to name the file and where to inject the script tag
-var htmlWebpackPluginConfig = new htmlWebpackPlugin({
-    template: __dirname + '/src/index.html',
-    filename: 'index.html',
-    inject: 'body'
+const path = require('path');
+
+//require webpack to use LoaderOptionsPlugin
+const webpack = require('webpack');
+//define plugins to be used with postCSS
+const postCSS = new webpack.LoaderOptionsPlugin({
+  options: {
+    context: path.join(__dirname, 'src'),
+    postcss: [
+      require('autoprefixer')
+    ]
+  }
 });
 
-var styleLintPlugin = require('stylelint-webpack-plugin');
-var stylelint = new styleLintPlugin({
+// plugin for moving index.html and adding our bundled js
+const htmlWebpackPlugin = require('html-webpack-plugin');
+//configuration for htmlwebpackplugin
+const htmlWebpackPluginConfig = new htmlWebpackPlugin({
+  template: __dirname + '/src/index.html',
+  hash: true,
+});
+
+//set stylelint options
+const styleLintPlugin = require('stylelint-webpack-plugin');
+const stylelint = new styleLintPlugin({
   configFile: '.stylelintrc.yml',
   context: 'src/sass',
   files: '**/*.scss',
-  failOnError: false,
+  failOnError: true,
   syntax: 'scss'
 });
 
-var ExtractTextPlugin = require('extract-text-webpack-plugin');
-var ExtractCSS =  new ExtractTextPlugin('main.css');
-var autoprefixer = require('autoprefixer');
-
-
 //config for webpack development
-var config = {
+const config = {
   context: path.join(__dirname, 'src'),
   entry: [
     './index.js',
@@ -35,27 +43,22 @@ var config = {
   },
   devtool: 'source-map',
   module: {
-    //preloaders like eslint to run before js is compiled
-    preLoaders: [
+   //all loaders used in webpack
+    rules: [
       {
         test: /\.js$/,
+        enforce: "pre",
         exclude: /node_modules/,
         loader: 'eslint-loader'
-      }
-   ],
-   //all loaders used in webpack
-    loaders: [
+      },
       {
         test: /\.js$/,
         exclude: /node_modules/,
-        loaders: ['babel'],
+        loaders: ['babel-loader'],
       },
       {
         test: /\.scss$/,
-        loader: ExtractTextPlugin.extract(
-          'style', // The backup style loader
-          ['css?sourceMap', 'postcss?sourceMap', 'sass?sourceMap']
-        )
+        loaders: ['style-loader?sourceMap','css-loader?sourceMap', 'postcss-loader?sourceMap', 'sass-loader?sourceMap']
       },
       {
         test: /\.(png|jpg|svg)$/,
@@ -63,30 +66,15 @@ var config = {
       },
     ],
   },
-  resolveLoader: {
-    root: [
-      path.join(__dirname, 'node_modules'),
-    ],
-  },
   resolve: {
-    root: [
+    modules: [
       path.join(__dirname, 'node_modules'),
     ],
-  },
-  //tell webpack where eslint config file is
-  eslint: {
-    configFile: './.eslintrc'
-  },
-  postcss: function () {
-    return {
-      defaults: [autoprefixer],
-      cleaner:  [autoprefixer({ browsers: [] })]
-    };
   },
   //load the HTMLwebpackplugin into webpack
   plugins: [
     htmlWebpackPluginConfig,
-    ExtractCSS,
+    postCSS,
     stylelint
   ],
 };
