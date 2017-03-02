@@ -15,6 +15,8 @@ const ROOT_DIR = __dirname.replace('/server', '');
 //find out node environment
 const NODE_ENV = process.env.NODE_ENV || 'development';
 
+const port = process.env.PORT || 3000;
+
 // ---------------------
 // -- some middleware --
 // ---------------------
@@ -55,8 +57,7 @@ if (NODE_ENV === 'production') {
 
 
 //have express listen for request
-const server = app.listen(3000, () => {
+const server = app.listen(port, () => {
   const host = server.address().address || 'localhost';
-  const port = server.address().port;
   console.log('Your awesome app listening at http://%s:%s', host, port);
 });

@@ -10,6 +10,7 @@ var postCSS = new webpack.LoaderOptionsPlugin({
     ]
   }
 });
+
 // plugin for moving index.html and adding our bundled js
 var htmlWebpackPlugin = require('html-webpack-plugin');
 //configuration for htmlwebpackplugin: tells the template, what to name the file and where to inject the script tag
@@ -55,11 +56,11 @@ module.exports = {
       {
         test: /\.js$/,
         exclude: /node_modules/,
-        loaders: ['babel-loader'],
+        use: 'babel-loader',
       },
       {
         test: /\.scss$/,
-        loaders: (process.env.NODE_ENV === 'development')
+        use: (process.env.NODE_ENV === 'development')
           ? ['style-loader?sourceMap', 'css-loader?sourceMap', 'postcss-loader?sourceMap', 'sass-loader?sourceMap']
           : ExtractTextPlugin.extract({
               fallbackLoader: 'style-loader',
@@ -69,7 +70,7 @@ module.exports = {
       },
       {
         test: /\.(png|jpg|svg)$/,
-        loader: 'file?name=img/[name].[ext]'
+        use: 'file?name=img/[name].[ext]'
       },
     ],
   },
