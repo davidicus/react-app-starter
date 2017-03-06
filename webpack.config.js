@@ -75,8 +75,12 @@ module.exports = {
           })
       },
       {
+        test: /\.(eot|svg|ttf|woff|woff2)$/,
+        use: 'file-loader?name=fonts/[name].[ext]'
+      },
+      {
         test: /\.(png|jpg|svg)$/,
-        use: 'file?name=img/[name].[ext]'
+        use: 'file-loader?name=img/[name].[ext]'
       },
     ],
   },
