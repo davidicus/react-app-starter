@@ -1,8 +1,8 @@
 //provides utilities for working with file and directory paths.
-var path = require('path');
+const path = require('path');
 
-var webpack = require('webpack');
-var postCSS = new webpack.LoaderOptionsPlugin({
+const webpack = require('webpack');
+const postCSS = new webpack.LoaderOptionsPlugin({
   options: {
     context: path.join(__dirname, 'src'),
     postcss: [
@@ -12,9 +12,9 @@ var postCSS = new webpack.LoaderOptionsPlugin({
 });
 
 // plugin for moving index.html and adding our bundled js
-var htmlWebpackPlugin = require('html-webpack-plugin');
+const htmlWebpackPlugin = require('html-webpack-plugin');
 //configuration for htmlwebpackplugin: tells the template, what to name the file and where to inject the script tag
-var htmlWebpackPluginConfig = new htmlWebpackPlugin({
+const htmlWebpackPluginConfig = new htmlWebpackPlugin({
   minify: {
     collapseWhitespace: (process.env.NODE_ENV === 'development') ? false : true
   },
@@ -22,8 +22,8 @@ var htmlWebpackPluginConfig = new htmlWebpackPlugin({
   hash: true,
 });
 
-var ExtractTextPlugin = require('extract-text-webpack-plugin');
-var ExtractCSS =  new ExtractTextPlugin({
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const ExtractCSS =  new ExtractTextPlugin({
   filename: 'main.css',
   disable: false,
   allChunks: true
