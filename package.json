@@ -1,7 +1,10 @@
 {
-  "name": "BYOSApp",
+  "name": "App Starter",
   "version": "1.0.0",
   "description": "My Project ---",
+  "engines": {
+    "node": "7.4.0"
+  },
   "main": "index.js",
   "scripts": {
     "compile:server": "babel server -d dist",
