@@ -1,69 +1,38 @@
-My Project
+# Starter App
+
+This repo is a starting point for a React Application. It contains a minimum number of packages which help with the development of most React applications.
+
+---
+## Setup
+
+```
+npm install
+```
 ---
 
-Usage
----
+## Usage
 
 Start the development server with this command:
 
 ```
 npm start
 ```
-
-
-
-Setup
 ---
 
-```
-npm install
-```
+## Compile
 
-
-
-Compile
----
-
+The following command will compile both the server and the webpack bundle for production.
 ```
 npm run compile
 ```
-
-sass linter :
-https://github.com/AtomLinter/linter-stylelint
-
-# Breakdown of Node modules
-
-## webpack
 ---
 
-### Sass compilation to file
+## Features
 
-#### modules to install
-
-- extract-text-webpack-plugin
-- node-sass
-- sass-loader
-- css-loader
-- style-loader
-
-#### code for webpack.config.js
-
-```
-var ExtractTextPlugin = require('extract-text-webpack-plugin');
-
-var ExtractCSS =  new ExtractTextPlugin('main.css');
-// this would be added to plugins array
-
-//added to loaders array
-{
-  test: /\.scss$/,
-  loader: ExtractTextPlugin.extract(
-    'style', // The backup style loader
-    'css?sourceMap!sass?sourceMap'
-  )
-}
-```
-#### add to your main react module
-```
-require("path/to/main.scss");
-```
+This starter app comes with the following:
+1. Sass compilation and [linter](https://github.com/AtomLinter/linter-stylelint)
+2. Autprefixer via PostCSS
+3. eslint JS linter
+4. Nodemon server utility for development
+5. Morgan logger
+6. Tree shaking
