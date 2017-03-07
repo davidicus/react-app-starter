@@ -30,6 +30,7 @@ npm run compile
 ## Features
 
 This starter app comes with the following:
+
 1. Sass compilation and [linter](https://github.com/AtomLinter/linter-stylelint)
 2. Autprefixer via PostCSS
 3. eslint JS linter
