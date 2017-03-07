@@ -3,11 +3,23 @@ const path = require('path');
 
 const webpack = require('webpack');
 const postCSS = new webpack.LoaderOptionsPlugin({
+  minimize: true,
+  debug: false,
   options: {
     context: path.join(__dirname, 'src'),
     postcss: [
       require('autoprefixer')
     ]
+  }
+});
+
+//uglify plugin
+const uglify = new webpack.optimize.UglifyJsPlugin({
+  sourceMap: true,
+  compress: {
+    warnings: false,
+    unused: true,
+    dead_code: true,
   }
 });
 
@@ -93,6 +105,7 @@ module.exports = {
   plugins: [
     htmlWebpackPluginConfig,
     postCSS,
+    uglify,
     (process.env.NODE_ENV === 'development') ? stylelint : ExtractCSS
   ],
 };
