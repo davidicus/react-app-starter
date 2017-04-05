@@ -1,6 +1,5 @@
-# Starter App
+# Shopper Insights UI
 
-This repo is a starting point for a React Application. It contains a minimum number of packages which help with the development of most React applications.
 
 ---
 ## Setup
@@ -8,14 +7,20 @@ This repo is a starting point for a React Application. It contains a minimum num
 ```
 npm install
 ```
+
+or
+
+```
+yarn install
+```
 ---
 
 ## Usage
 
-Start the development server with this command:
+Start the development server with:
 
 ```
-npm start
+yarn(npm) start
 ```
 ---
 
@@ -23,7 +28,15 @@ npm start
 
 The following command will compile both the server and the webpack bundle for production.
 ```
-npm run compile
+yarn(npm) run compile
+```
+---
+
+## Linting
+
+To run linting on JS and Sass run:
+```
+yarn(npm) run lint
 ```
 ---
 
@@ -33,7 +46,10 @@ This starter app comes with the following:
 
 1. Sass compilation and [linter](https://github.com/AtomLinter/linter-stylelint)
 2. Autprefixer via PostCSS
-3. eslint JS linter
-4. Nodemon server utility for development
-5. Morgan logger
-6. Tree shaking
+3. Sass linting
+4. eslint JS linter
+5. Routing with React-Router
+6. Redux
+7. Nodemon server utility for development
+8. Morgan logger
+9. Tree shaking
