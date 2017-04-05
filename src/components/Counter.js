@@ -1,10 +1,10 @@
-import React from 'react';
+import React, { Component } from 'react';
 require('../img/thing.png')
 
 /**
  * A counter button: tap the button to increase the count.
  */
-class Counter extends React.Component {
+export default class Counter extends Component {
   constructor() {
     super();
     this.state = {
@@ -27,4 +27,3 @@ class Counter extends React.Component {
     );
   }
 }
-export default Counter;

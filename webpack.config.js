@@ -81,8 +81,8 @@ module.exports = {
         use: (process.env.NODE_ENV === 'development')
           ? ['style-loader?sourceMap', 'css-loader?sourceMap', 'postcss-loader?sourceMap', 'sass-loader?sourceMap']
           : ExtractTextPlugin.extract({
-              fallbackLoader: 'style-loader',
-              loader: ['css-loader?sourceMap', 'postcss-loader?sourceMap', 'sass-loader?sourceMap'],
+              fallback: 'style-loader',
+              use: ['css-loader?sourceMap', 'postcss-loader?sourceMap', 'sass-loader?sourceMap'],
               publicPath: "/dist",
           })
       },

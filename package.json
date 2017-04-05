@@ -13,7 +13,7 @@
     "lint:javascript": "./node_modules/.bin/eslint ./src ./server/server.js",
     "lint:stylelint": "./node_modules/.bin/stylelint './src/**/*.scss' --syntax scss",
     "lint": "npm run lint:javascript && npm run lint:stylelint",
-    "start": "NODE_ENV='development' nodemon ./server/server.js --exec babel-node --inspect",
+    "start": "NODE_ENV='development' nodemon ./server/server.js --exec babel-node",
     "start:prod": "NODE_ENV='production' node ./dist/server.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -28,7 +28,8 @@
     "express": "^4.14.0",
     "react": "^15.4.2",
     "react-dom": "^15.4.2",
-    "react-router-dom": "^4.0.0"
+    "react-router-dom": "^4.0.0",
+    "redux": "^3.6.0"
   },
   "devDependencies": {
     "autoprefixer": "^6.7.0",
