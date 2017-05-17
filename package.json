@@ -16,7 +16,7 @@
     "lint": "npm run lint:javascript && npm run lint:stylelint",
     "start": "NODE_ENV='development' nodemon ./server/server.js --exec babel-node --inspect",
     "start:prod": "NODE_ENV='production' node ./dist/server.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 0"
   },
   "eslint": {
     "configFile": "./.eslintrc"
