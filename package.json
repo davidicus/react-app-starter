@@ -7,9 +7,10 @@
   },
   "main": "index.js",
   "scripts": {
+    "clean": "del ./dist",
     "compile:server": "babel server -d dist",
     "compile:webpack": "NODE_ENV='production' webpack -p",
-    "compile": "npm run compile:server && npm run compile:webpack",
+    "compile": "npm run clean && npm run compile:server && npm run compile:webpack",
     "lint:javascript": "./node_modules/.bin/eslint ./src ./server/server.js",
     "lint:stylelint": "./node_modules/.bin/stylelint './src/**/*.scss' --syntax scss",
     "lint": "npm run lint:javascript && npm run lint:stylelint",
