@@ -1,0 +1,10 @@
+sudo: true
+language: node_js
+
+before_script:
+  # compile the app for testing
+  - npm run compile
+
+script:
+  # run static/unit testing
+  - npm test
