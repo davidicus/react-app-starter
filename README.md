@@ -1,6 +1,12 @@
-# Starter App
 
-This repo is a starting point for a React Application. It contains a minimum number of packages which help with the development of most React applications.
+
+# React/ Webpack Starter
+[![Build Status](https://travis-ci.org/davidicus/react-app-starter.svg?branch=master)](https://travis-ci.org/davidicus/react-app-starter)
+<a href="https://zenhub.innovate.ibm.com/setup/download">
+  <img src="https://img.shields.io/badge/shipping%20faster%20with%20-zenhub-blue.svg?colorB=5E60BA">
+</a>
+
+A starting point for React Applications. This boilerplate is bootstrapped with enough files to have your application up in running in the browser in seconds.
 
 ---
 ## Setup
