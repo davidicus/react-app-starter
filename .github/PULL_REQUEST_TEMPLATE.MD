@@ -4,7 +4,7 @@
 
 <!-- E.g. a bugfix, feature, refactoring, build related change, etc… -->
 
-**Did you properly implement i18n for your changes?**
+**Did you write unit test?**
 
 <!-- Note that we won't merge your changes if you didn't -->
 

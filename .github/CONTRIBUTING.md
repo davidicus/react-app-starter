@@ -1,4 +1,4 @@
-# Contributing to IoT 4 Retail
+# Contributing to Awesomeness
 
 This document serves as a reference guide for best practices when contributing to this project.
 
@@ -23,7 +23,7 @@ This document serves as a reference guide for best practices when contributing t
 ## Commit Messages
 Using emojis on commit messages provides an easy way of identifying the purpose or intention of a commit with only looking at the emojis used.
 
-Please follow the following template for commit messages: 
+Please follow the following template for commit messages:
 ```bash
 :<emoji>: <subject>
 ```
