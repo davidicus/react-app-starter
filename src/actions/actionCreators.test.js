@@ -7,20 +7,10 @@ const middlewares = [ thunk ];
 const mockStore = configureMockStore(middlewares);
 const data = [
   {
-    "uid": "zone_1",
-    "name": "Check-out",
-    "description": "",
-    "location": "store_1",
-    "parentZone": "zone_101",
-    "function": "TBD"
-  },
-  {
-    "uid": "zone_2",
-    "name": "Beverage cooler",
-    "description": "",
-    "location": "store_1",
-    "parentZone": "zone_101",
-    "function": "TBD"
+    "userId": 1,
+    "id": 1,
+    "title": "sunt aut facere repellat provident occaecati excepturi optio reprehenderit",
+    "body": "quia et suscipit\nsuscipit recusandae consequuntur expedita et cum\nreprehenderit molestiae ut ut quas totam\nnostrum rerum est autem sunt rem eveniet architecto"
   }
 ]
 
@@ -32,8 +22,8 @@ const error = [
 ];
 
 it(`Should dispatch GET_STORE_DATA and GET_STORE_DATA_SUCCESS actions`, () => {
-  nock(`https://api.github.com/user/orgs`)
-  .get(`/zones`)
+  nock(`https://jsonplaceholder.typicode.com`)
+  .get(`/posts/1`)
   .reply(200, data);
 
   const expectedActions = [
@@ -54,8 +44,8 @@ it(`Should dispatch GET_STORE_DATA and GET_STORE_DATA_SUCCESS actions`, () => {
 });
 
 it(`Should dispatch GET_STORE_DATA and GET_STORE_DATA_FAILURE action`, () => {
-  nock(`https://api.github.com/user/orgs`)
-  .get(`/zones`)
+  nock(`https://jsonplaceholder.typicode.com`)
+  .get(`/posts/1`)
   .reply(404, error);
 
   const expectedActions = [
