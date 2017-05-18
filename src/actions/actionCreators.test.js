@@ -54,7 +54,7 @@ it(`Should dispatch GET_STORE_DATA and GET_STORE_DATA_SUCCESS actions`, () => {
 });
 
 it(`Should dispatch GET_STORE_DATA and GET_STORE_DATA_FAILURE action`, () => {
-  nock(`https://acree001.mybluemix.net/api/v0001`)
+  nock(`https://api.github.com/user/orgs`)
   .get(`/zones`)
   .reply(404, error);
 
