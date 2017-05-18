@@ -50,7 +50,7 @@ if (NODE_ENV === 'production') {
   }));
   //change context for dev locations
   app.use(express.static(ROOT_DIR + './src'));
-  app.get('/', (req, res) => {
+  app.get('*', (req, res) => {
     res.sendFile(path.join(ROOT_DIR, 'src/index.html'));
   });
 }
