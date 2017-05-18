@@ -8,7 +8,7 @@ export const GET_STORE_DATA_SUCCESS = `GET_STORE_DATA_SUCCESS`;
 export const fetchStoreData = () => {
   return dispatch => {
     dispatch(getStoreData());
-    return fetch(`https://acree001.mybluemix.net/api/v0001/zones`, {method: `GET`})
+    return fetch(`https://api.github.com/user/orgs`, {method: `GET`})
       .then(response => {
         const json = response.json();
         if (response.status >= 200 && response.status < 300) {
