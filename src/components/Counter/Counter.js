@@ -1,10 +1,12 @@
-import React from 'react';
-require('../img/thing.png')
+import React, { Component } from 'react';
+require('thing');
+
+import { fetchStoreData } from  'actionCreators';
 
 /**
  * A counter button: tap the button to increase the count.
  */
-class Counter extends React.Component {
+export default class Counter extends Component {
   constructor() {
     super();
     this.state = {
@@ -12,10 +14,14 @@ class Counter extends React.Component {
     };
   }
 
+  componentDidMount () {
+    this.props.dispatch(fetchStoreData());
+  }
+
   render() {
     return (
       <div>
-        <img src="/img/thing.png"/>
+        <img alt="a placeholder" src="/img/thing.png"/>
         <button
           onClick={() => {
             this.setState({ count: this.state.count + 1 });
@@ -27,4 +33,3 @@ class Counter extends React.Component {
     );
   }
 }
-export default Counter;
