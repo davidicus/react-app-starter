@@ -43,3 +43,5 @@ This starter app comes with the following:
 4. Nodemon server utility for development
 5. Morgan logger
 6. Tree shaking
+7. A11y checker
+8. Redux store
